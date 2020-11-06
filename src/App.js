@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Character from './components/Character.js'
-import PageSelector from './components/PageSelector.js'
+import PageSelector from './components/PageSelector.js';
+import Filter from './components/Filter.js';
 import styled from 'styled-components';
 import axios from 'axios';
 import './App.css';
 
 const CharacterList = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const AppContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
@@ -31,8 +36,6 @@ const App = () => {
   console.log(data);
   
   let cards = [];
-  const startId = (data !== null ? data.results[0].id : null);
-  const endId = (data !== null ? data.results[data.results.length - 1].id : null);
 
   for(let i = 0; i < (data !== null && data.results.length); i++)
     cards.push(
@@ -43,10 +46,15 @@ const App = () => {
 
   return (
     <div>
+      <AppContainer>
+        <Filter setData={setData}/>
+      </AppContainer>
       <div className='cards-container'>
         {cards}
       </div>
-      <PageSelector pageNumber={pageNumber} setPageNumber={setPageNumber}/>
+      <AppContainer>
+        <PageSelector pageNumber={pageNumber} setPageNumber={setPageNumber}/>
+      </AppContainer>
     </div>
   );  
 }
