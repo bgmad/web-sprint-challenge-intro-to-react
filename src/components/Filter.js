@@ -14,18 +14,15 @@ const Input = styled.input`
     font-size: 1.7rem;
     border: none;
     background: #f5f5f5;
-    /* margin: 10px; */
+    padding: 0px 10px;
 `;
 
 export default function ( { setNameFilter }) {
-  
-    const filterData = () => {
-        setNameFilter(document.getElementById('search').value);
-    } 
     return (
         <FilterContainer>
             <Input id='search'></Input>
-            <button onClick={filterData}>Search</button>
+            <button onClick={() => setNameFilter('')}>Reset</button>
+            <button onClick={() => setNameFilter(document.getElementById('search').value)}>Search</button>
         </FilterContainer>
     );
 }

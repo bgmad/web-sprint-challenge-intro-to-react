@@ -22,50 +22,65 @@ const CharacterCardHeader = styled.div`
   line-height: 0px;
 `;
 
-const buttonStyle = {
-    width: '40px',
-    height: '40px',
-    borderRadius: '50% 50%',
-    fontSize: '1.4rem',
-    paddingTop: '8px',
-    transform: 'rotate(180deg)',
-    background: 'white',
-    border: 'none',
-    fontWeight: 'bold',
-};
+const InfoContainer = styled.div`
+    align-self: center;
+    width: 90%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 0px 30px;
+
+    /* border: thin black solid; */
+`;
+
 
 export default function Character({ id }) {
     
-  const [data, setData] = useState(null);
-  const [showInfo, setShowInfo] = useState(false);
+    const [data, setData] = useState(null);
+    const [showInfo, setShowInfo] = useState(false);
+    
+    useEffect(() => {
+        axios
+        .get(`https://rickandmortyapi.com/api/character/${id}`)
+        .then(res => setData(res.data))
+        .catch(err => console.log(err));
+    }, [id]);
+    
+    const displayInfo = () => {
+        setShowInfo(!showInfo);
+    }
+    
+    const buttonStyle = {
+        width: '40px',
+        height: '40px',
+        borderRadius: '50% 50%',
+        fontSize: '1.4rem',
+        paddingTop: '8px',
+        transform: (showInfo ? 'rotate(0deg)' : 'rotate(180deg)'),
+        background: 'white',
+        border: 'none',
+        fontWeight: 'bold',
+    };
 
-  useEffect(() => {
-    axios
-    .get(`https://rickandmortyapi.com/api/character/${id}`)
-    .then(res => setData(res.data))
-    .catch(err => console.log(err));
-  }, [id]);
-
-  const displayInfo = () => {
-    setShowInfo(!showInfo);
-  }
-
-  const info = (
-      <div>
-        {data !== null && <div>Created: {data.created}</div>}  
-        {data !== null && <div>Total Episodes: {data.episode.length}</div>}  
-        {data !== null && <div>Gender: {data.gender}</div>}  
-        {data !== null && <div>Location: {data.location.name}</div>}  
-        {data !== null && <div>Origin: {data.origin.name}</div>}  
-        {data !== null && <div>Species: {data.species}</div>}  
-        {data !== null && <div>Status: {data.status}</div>}  
-      </div>
+    const info = (
+      <InfoContainer>
+          <img src={data !== null && data.image} alt={data !== null && data.name} style={{width: '50%'}}></img>
+          <div>
+            {data !== null && <div>Created: {data.created}</div>}  
+            {data !== null && <div>Total Episodes: {data.episode.length}</div>}  
+            {data !== null && <div>Gender: {data.gender}</div>}  
+            {data !== null && <div>Location: {data.location.name}</div>}  
+            {data !== null && <div>Origin: {data.origin.name}</div>}  
+            {data !== null && <div>Species: {data.species}</div>}  
+            {data !== null && <div>Status: {data.status}</div>}  
+          </div>
+      </InfoContainer>
     )
 
 
     return (
         <CharacterCard>
-            <CharacterCardHeader>
+            <CharacterCardHeader onClick={displayInfo}>
                 {data !== null && <h2>{data.name}</h2>}
                 {data !== null && <button style={buttonStyle} onClick={displayInfo}>^</button>}
             </CharacterCardHeader>
