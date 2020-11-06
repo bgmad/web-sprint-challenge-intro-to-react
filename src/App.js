@@ -1,4 +1,6 @@
 import React from 'react';
+import Character from './components/Character.js'
+import styled from 'styled-components';
 import './App.css';
 
 const App = () => {
@@ -8,10 +10,26 @@ const App = () => {
   // Fetch characters from the API in an effect hook. Remember, anytime you have a 
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
+  
+  const CharacterList = styled.div`
+    display: flex;
+    justify-content: center;
+  `;
+
+  let cards = [];
+
+  for(let id = 0; id < 10; id++)
+    cards.push(
+      <CharacterList>
+        <Character id={id} />
+      </CharacterList>
+    );
+
+  console.log(cards);
 
   return (
-    <div className="App">
-      <h1 className="Header">Characters</h1>
+    <div>
+      {cards}
     </div>
   );
 }
