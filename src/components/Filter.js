@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 
 const FilterContainer = styled.div`
     width: 75%;
@@ -18,13 +17,10 @@ const Input = styled.input`
     /* margin: 10px; */
 `;
 
-export default function ( { setData }) {
+export default function ( { setNameFilter }) {
   
     const filterData = () => {
-        axios
-        .get(`https://rickandmortyapi.com/api/character/?name=${document.getElementById('search').value}`)
-        .then(res => setData(res.data))
-        .catch(err => console.log(err));
+        setNameFilter(document.getElementById('search').value);
     } 
     return (
         <FilterContainer>

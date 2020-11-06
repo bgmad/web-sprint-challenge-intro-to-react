@@ -25,13 +25,14 @@ const App = () => {
 
   const [data, setData] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const [nameFilter, setNameFilter] = useState('');
 
   useEffect(() => {
     axios
-    .get(`https://rickandmortyapi.com/api/character/?page=${pageNumber}`)
+    .get(`https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${nameFilter}`)
     .then(res => setData(res.data))
     .catch(err => console.log(err));
-  }, [pageNumber]);
+  }, [pageNumber, nameFilter]);
 
   console.log(data);
   
@@ -47,7 +48,7 @@ const App = () => {
   return (
     <div>
       <AppContainer>
-        <Filter setData={setData}/>
+        <Filter setNameFilter={setNameFilter}/>
       </AppContainer>
       <div className='cards-container'>
         {cards}
