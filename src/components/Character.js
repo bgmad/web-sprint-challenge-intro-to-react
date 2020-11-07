@@ -64,7 +64,7 @@ export default function Character({ id }) {
         width: '40px',
         height: '40px',
         borderRadius: '10px 10px',
-        fontSize: '1.5rem',
+        fontSize: '30px',
         background: 'white',
         border: 'none',
         fontWeight: 'bold',
