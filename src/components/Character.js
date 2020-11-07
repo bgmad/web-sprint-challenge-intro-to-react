@@ -68,6 +68,7 @@ export default function Character({ id }) {
         background: 'white',
         border: 'none',
         fontWeight: 'bold',
+        textAlign: 'center',
     };
 
     const info = (
