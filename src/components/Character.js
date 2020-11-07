@@ -19,7 +19,6 @@ const CharacterCardHeader = styled.div`
   align-items: center;
   background: #edede6;
   padding: 20px 0px;
-  line-height: 0px;
 `;
 
 const InfoContainer = styled.div`
@@ -29,8 +28,6 @@ const InfoContainer = styled.div`
     flex-flow: row nowrap;
     justify-content: space-between;
     padding: 0px 30px;
-
-    /* border: thin black solid; */
 `;
 
 
