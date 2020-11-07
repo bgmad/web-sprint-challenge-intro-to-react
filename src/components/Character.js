@@ -74,7 +74,7 @@ export default function Character({ id }) {
 
     const info = (
       <InfoContainer>
-          <img src={data !== null && data.image} alt={data !== null && data.name} style={{width: '50%'}}></img>
+          <img src={data !== null && data.image} alt={data !== null && data.name} style={{width: '100%'}}></img>
           <InfoTextContainer>
             {data !== null && <div>Created: {data.created}</div>}  
             {data !== null && <div>Total Episodes: {data.episode.length}</div>}  
