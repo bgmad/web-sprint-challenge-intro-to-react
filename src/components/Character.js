@@ -28,7 +28,7 @@ const InfoContainer = styled.div`
     justify-content: space-between;
     padding: 0px 30px;
 
-    @media (max-width: 500px) {
+    @media (max-width: 650px) {
         flex-direction: column;
         align-items: center; 
     }
@@ -37,7 +37,7 @@ const InfoContainer = styled.div`
 const InfoTextContainer = styled.div`
     margin: 0 20px;
     
-    @media (max-width: 500px) {
+    @media (max-width: 650px) {
         margin: 20px 0px;
         text-align: center;
     }
@@ -64,9 +64,7 @@ export default function Character({ id }) {
         width: '40px',
         height: '40px',
         borderRadius: '50% 50%',
-        fontSize: '1.4rem',
-        paddingTop: '8px',
-        transform: (showInfo ? 'rotate(0deg)' : 'rotate(180deg)'),
+        fontSize: '1.5rem',
         background: 'white',
         border: 'none',
         fontWeight: 'bold',
@@ -92,7 +90,7 @@ export default function Character({ id }) {
         <CharacterCard>
             <CharacterCardHeader onClick={displayInfo}>
                 {data !== null && <h2>{data.name}</h2>}
-                {data !== null && <button style={buttonStyle} onClick={displayInfo}>^</button>}
+                {data !== null && <button style={buttonStyle} onClick={displayInfo}>{showInfo ? '-' : '+'}</button>}
             </CharacterCardHeader>
             {showInfo && info}
         </CharacterCard>
