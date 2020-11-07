@@ -63,7 +63,7 @@ export default function Character({ id }) {
     const buttonStyle = {
         width: '40px',
         height: '40px',
-        borderRadius: '25% 25%',
+        borderRadius: '10px 10px',
         fontSize: '1.5rem',
         background: 'white',
         border: 'none',
