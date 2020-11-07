@@ -7,7 +7,6 @@ const CharacterCard = styled.div`
   width: 75%;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   background: #edede6;
 `;
@@ -28,6 +27,20 @@ const InfoContainer = styled.div`
     flex-flow: row nowrap;
     justify-content: space-between;
     padding: 0px 30px;
+
+    @media (max-width: 500px) {
+        flex-direction: column;
+        align-items: center; 
+    }
+`;
+
+const InfoTextContainer = styled.div`
+    margin: 0 20px;
+    
+    @media (max-width: 500px) {
+        margin: 20px 0px;
+        text-align: center;
+    }
 `;
 
 
@@ -62,7 +75,7 @@ export default function Character({ id }) {
     const info = (
       <InfoContainer>
           <img src={data !== null && data.image} alt={data !== null && data.name} style={{width: '50%'}}></img>
-          <div>
+          <InfoTextContainer>
             {data !== null && <div>Created: {data.created}</div>}  
             {data !== null && <div>Total Episodes: {data.episode.length}</div>}  
             {data !== null && <div>Gender: {data.gender}</div>}  
@@ -70,7 +83,7 @@ export default function Character({ id }) {
             {data !== null && <div>Origin: {data.origin.name}</div>}  
             {data !== null && <div>Species: {data.species}</div>}  
             {data !== null && <div>Status: {data.status}</div>}  
-          </div>
+          </InfoTextContainer>
       </InfoContainer>
     )
 
